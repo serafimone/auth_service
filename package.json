@@ -1,0 +1,33 @@
+{
+  "name": "authmicroservice",
+  "version": "1.0.0",
+  "description": "blank",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "launch": "rimraf ./dist && tsc && node ./dist/src/index.js",
+    "lint": "eslint",
+    "tsc": "tsc",
+    "test": "rimraf ./dist && tsc && jest"
+  },
+  "author": "serafimodin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.11",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1",
+    "typeorm": "^0.2.20"
+  }
+}
