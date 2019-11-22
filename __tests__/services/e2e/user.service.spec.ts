@@ -1,8 +1,8 @@
-import { DatabaseService } from "../src/database/database.service"
-import { UserService } from "../src/services/user.service";
-import { User } from "../src/database/entity/user.entity";
+import { DatabaseService } from "../../../src/database/database.service"
+import { UserService } from "../../../src/services/user.service";
+import { User } from "../../../src/database/entity/user.entity";
 
-describe("User service tests", () => {
+describe("User service integration tests", () => {
 
   let dataBase: DatabaseService;
   let userService: UserService;

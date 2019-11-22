@@ -3,6 +3,8 @@ import { Config } from './core/config/config';
 import { DatabaseService } from './database/database.service';
 import LoggerService from './core/logger/logger.service';
 import { UserService } from './services/user.service';
+import { ITokenService } from './core/service/Itoken.service';
+import { TokenService } from './services/token.service';
 
 export default class Application {
   
@@ -14,7 +16,14 @@ export default class Application {
 
   private userService!: UserService
 
+  private tokenService!: ITokenService
+
   private static instance: Application;
+
+  private constructor() {
+    this.http = Express();
+    this.initializeServices();
+  }
 
   public static getInstance() {
     if (!this.instance) {
@@ -32,16 +41,12 @@ export default class Application {
     return this.getInstance().run();
   }
 
-  private constructor() {
-    this.http = Express();
-    this.initializeServices();
-  }
-
   protected async initializeServices() {
     this.logger = new LoggerService();
     this.database = new DatabaseService();
     await this.database.connect();
     this.userService = new UserService(this.database);
+    this.tokenService = new TokenService();
   }
 
   protected run() {
@@ -49,4 +54,5 @@ export default class Application {
       this.logger.write('Here is started!');
     });
   }
+
 }
