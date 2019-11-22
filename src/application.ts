@@ -5,6 +5,8 @@ import LoggerService from './core/logger/logger.service';
 import { UserService } from './services/user.service';
 import { ITokenService } from './core/service/Itoken.service';
 import { TokenService } from './services/token.service';
+import { IRedisService } from './core/service/iredis.service';
+import { RedisService } from './services/redis.service';
 
 export default class Application {
   
@@ -17,6 +19,8 @@ export default class Application {
   private userService!: UserService
 
   private tokenService!: ITokenService
+
+  private redisService!: IRedisService
 
   private static instance: Application;
 
@@ -47,6 +51,7 @@ export default class Application {
     await this.database.connect();
     this.userService = new UserService(this.database);
     this.tokenService = new TokenService();
+    this.redisService = new RedisService();
   }
 
   protected run() {
