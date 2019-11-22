@@ -7,11 +7,14 @@ import { ITokenService } from './core/service/Itoken.service';
 import { TokenService } from './services/token.service';
 import { IRedisService } from './core/service/iredis.service';
 import { RedisService } from './services/redis.service';
+import { IAuthController } from './core/controller/iauth.controller';
+import { AuthController } from './controllers /auth.controller';
 
 export default class Application {
   
   private http!: Express.Express
 
+  //services
   private logger!: LoggerService
 
   private database!: DatabaseService
@@ -22,11 +25,15 @@ export default class Application {
 
   private redisService!: IRedisService
 
+  //controllers
+  private authController!: IAuthController
+
   private static instance: Application;
 
   private constructor() {
     this.http = Express();
     this.initializeServices();
+    this.initializeControllers();
   }
 
   public static getInstance() {
@@ -52,6 +59,14 @@ export default class Application {
     this.userService = new UserService(this.database);
     this.tokenService = new TokenService();
     this.redisService = new RedisService();
+  }
+
+  protected initializeControllers() {
+    this.authController = new AuthController(
+      this.userService,                                        
+      this.tokenService, 
+      this.redisService
+    );
   }
 
   protected run() {

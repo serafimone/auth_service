@@ -19,6 +19,10 @@ export class UserService implements IDataService<User> {
     return await this.userRepository.findOne(id);
   }
 
+  public async getByLogin(login: string) : Promise<User> {
+    return await this.userRepository.findOneOrFail({where: {login}})
+  }
+
   public async update(value: User): Promise<User> {
     return await this.userRepository.save(value);
   }
