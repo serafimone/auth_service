@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf ./dist && tsc",
-    "launch": "rimraf ./dist && tsc && node ./dist/src/index.js",
+    "launch": "rimraf ./dist && tsc && node ./dist/index.js",
     "lint": "eslint",
     "tsc": "tsc",
     "test": "rimraf ./dist && tsc && jest"
